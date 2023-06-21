@@ -13,20 +13,16 @@ Sub CopyData()
     Set commandSheet = ThisWorkbook.Worksheets("コマンドシート")
     Set summarySheet = ThisWorkbook.Worksheets("まとめシート")
     
-    ' 最終行を取得する
-    lastRow = commandSheet.Cells(commandSheet.Rows.Count, "A").End(xlUp).Row
-    summaryLastRow = summarySheet.Cells(summarySheet.Rows.Count, "A").End(xlUp).Row
-    
     ' コピー範囲を初期化する
     Set copyRange = Nothing
-    
+
     ' レイアウトシートのセルA1とセルA2の値を確認し、条件に合致する場合、コピー範囲を設定する
     If layoutSheet.Range("A1").Value = "条件1" Then
-        ' セルA1に条件1が記載されている場合、コマンドシートのA列をコピーする
-        Set copyRange = commandSheet.Range("A1:A" & lastRow)
+        ' セルA1に条件1が記載されている場合、コマンドシートのA列のセルA2からセルA50までをコピーする
+        Set copyRange = commandSheet.Range("A2:A50")
     ElseIf layoutSheet.Range("A1").Value = "条件2" And layoutSheet.Range("A2").Value = "タイプ1" Then
-        ' セルA1に条件2、セルA2にタイプ1が記載されている場合、コマンドシートのB列をコピーする
-        Set copyRange = commandSheet.Range("B1:B" & lastRow)
+        ' セルA1に条件2、セルA2にタイプ1が記載されている場合、コマンドシートのB列のセルA2からセルA50までをコピーする
+        Set copyRange = commandSheet.Range("B2:B50")
     End If
     
     ' コピー範囲が存在する場合、まとめシートにデータを追加する
